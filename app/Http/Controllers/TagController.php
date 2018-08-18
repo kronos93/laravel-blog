@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tag;
 use Illuminate\Http\Request;
-
+use App\Post;
 class TagController extends Controller
 {
     /**
@@ -47,6 +47,10 @@ class TagController extends Controller
     public function show(Tag $tag)
     {
         //
+        $posts = Post::whereHas('tags', function($query) use ($tag) { $query->where('slug',$tag->slug);})
+                        ->orderBy('id','DESC')->where('status','PUBLISHED')->paginate(5);
+
+        return view('blog.index',compact('posts'));
     }
 
     /**
@@ -58,6 +62,7 @@ class TagController extends Controller
     public function edit(Tag $tag)
     {
         //
+
     }
 
     /**

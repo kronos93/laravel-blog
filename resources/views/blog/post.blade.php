@@ -1,27 +1,30 @@
 @extends('layouts.app')
 
+
 @section('content')
     <div class="container">
-        <h1>Listado de post</h1>
-        <div class="row">
 
-            @forelse($posts as $post)
-            <div class="col-sm-4">
-                <div class="card">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h1> {{ $post->name }} </h1>
+                    <h4>Categoría: </h4>
+                    <a href="{{ route('category.show', $post->category->slug) }}">{{ $post->category->name }}</a>
+                </div>
+                <div class="card-body">
                     @if($post->file)
-                    <img class="card-img-top" src="{{ $post->file }}" alt="Card image cap">
+                        <img class="card-img-top" src="{{ $post->file }}" alt="Card image cap">
                     @endif
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $post->name }}</h5>
-                        <p class="card-text">{{ $post->excerpt }}...</p>
-                        <a href="#" class="btn btn-primary">Leer más</a>
-                    </div>
+                    <!-- <h5 class="card-title">Special title treatment</h5> -->
+                    <p class="card-text">{!! $post->body !!}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Etiquetas:
+                    @foreach($post->tags as $tag)
+                        <a href="{{ route('tag.show', $tag->slug) }}">{{ $tag->name }}</a>,
+                    @endforeach
                 </div>
             </div>
-            @empty
-                <p>Sin publicaciones para mostrar :(</p>
-            @endforelse
-        </div>
-        {{ $posts->links() }}
+
     </div>
 @endsection

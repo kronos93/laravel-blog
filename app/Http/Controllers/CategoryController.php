@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
-
+use App\Post;
 class CategoryController extends Controller
 {
     /**
@@ -47,6 +47,8 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         //
+        $posts = Post::orderBy('id','DESC')->where('status','PUBLISHED')->where('category_id',$category->id)->paginate(5);
+        return view('blog.index', compact('posts'));
     }
 
     /**

@@ -18,7 +18,7 @@ class BlogController extends Controller
     {
         //
         $posts = Post::orderBy('id','DESC')->where('status','PUBLISHED')->paginate(5);
-        return view('blog.post', compact('posts'));
+        return view('blog.index', compact('posts'));
     }
 
     /**
@@ -48,9 +48,10 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
         //
+        return view('blog.post', compact('post'));
     }
 
     /**

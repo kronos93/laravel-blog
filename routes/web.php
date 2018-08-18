@@ -15,4 +15,8 @@ Route::redirect('/', 'blog');
 
 Auth::routes();
 
-Route::resource('blog', 'BlogController');
+// Route::resource('blog', 'BlogController');
+Route::get('blog','BlogController@index')->name('blog.index');
+Route::get('blog/{post}','BlogController@show')->name('blog.show');
+Route::get('categoria/{category}','CategoryController@show')->name('category.show');
+Route::get('etiqueta/{tag}','TagController@show')->name('tag.show');

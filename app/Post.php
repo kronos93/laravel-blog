@@ -31,4 +31,10 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
         // return $this->belongsToMany('App\Tag', 'post_tag', 'post_id', 'tag_id');
     }
+
+    // Route model binding
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
