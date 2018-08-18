@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Post;
 class TagController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +18,8 @@ class TagController extends Controller
     public function index()
     {
         //
+        $tags = Tag::orderBy('id','DESC')->paginate(5);
+        return view('tag.index', compact('tags'));
     }
 
     /**
@@ -25,6 +30,8 @@ class TagController extends Controller
     public function create()
     {
         //
+        dd('Hols');
+        return view('tag.create');
     }
 
     /**

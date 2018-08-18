@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <h1> {{ $post->name }} </h1>
                     <h4>Categoría: </h4>
-                    <a href="{{ route('category.show', $post->category->slug) }}">{{ $post->category->name }}</a>
+                    <a href="{{ route('categories.show', $post->category->slug) }}">{{ $post->category->name }}</a>
                 </div>
                 <div class="card-body">
                     @if($post->file)
@@ -21,7 +21,7 @@
                 <div class="card-footer text-muted">
                     Etiquetas:
                     @foreach($post->tags as $tag)
-                        <a href="{{ route('tag.show', $tag->slug) }}">{{ $tag->name }}</a>,
+                        <a href="{{ route('tags.show', $tag->slug) }}">{{ $tag->name }}</a>,
                     @endforeach
                 </div>
             </div>
