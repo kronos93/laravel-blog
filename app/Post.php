@@ -33,8 +33,8 @@ class Post extends Model
     }
 
     // Route model binding
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 }

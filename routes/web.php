@@ -15,19 +15,18 @@ Route::redirect('/', 'blog');
 
 Auth::routes();
 
-// Route::resource('blog', 'BlogController');
 // Pages
 Route::get('blog','BlogController@index')->name('blog.index');
-Route::get('blog/{post}','BlogController@show')->name('blog.show');
-Route::get('categorias/{category}','CategoryController@show')->name('categories.show');
-Route::get('etiquetas/{tag}','TagController@show')->name('tags.show'); // TODO: Conflict
+Route::get('blog/{slug}','BlogController@show')->name('blog.show');
+Route::get('categorias/{slug}','BlogController@showByCategory')->name('blog.category');
+Route::get('etiquetas/{slug}','BlogController@showByTag')->name('blog.tag');
 
 // Admin
 
 
-Route::get('etiquetas','TagController@index')->name('tags.index');
-Route::get('etiquetas/crear','TagController@create')->name('tags.create');// TODO: Conflict
+// Route::get('etiquetas','TagController@index')->name('tags.index');
+// Route::get('etiquetas/crear','TagController@create')->name('tags.create');
 
 
-Route::get('categorias','CategoryController@index')->name('categories.index');
-Route::get('posts','PostController@index')->name('posts.index');
+// Route::get('categorias','CategoryController@index')->name('categories.index');
+// Route::get('posts','PostController@index')->name('posts.index');

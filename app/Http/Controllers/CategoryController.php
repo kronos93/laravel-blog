@@ -46,9 +46,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
-        $posts = Post::orderBy('id','DESC')->where('status','PUBLISHED')->where('category_id',$category->id)->paginate(5);
-        return view('blog.index', compact('posts'));
+
     }
 
     /**

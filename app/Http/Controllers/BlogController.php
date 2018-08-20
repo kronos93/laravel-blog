@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Post;
-
+use App\Category;
+use App\Tag;
 class BlogController extends Controller
 {
     /**
@@ -48,12 +49,28 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($slug)
     {
         //
+        $post = Post::where('slug',$slug)->first();
         return view('blog.post', compact('post'));
     }
 
+    public function showByCategory ($slug) {
+        //
+        $category = Category::where('slug', $slug)->pluck('id')->first();
+        $posts = Post::where('category_id', $category)->orderBy('id','DESC')->where('status','PUBLISHED')->paginate(5);
+        return view('blog.index', compact('posts'));
+    }
+
+    public function showByTag ($slug) {
+        $tag = Tag::where('slug',$slug)->first();
+        $posts = Post::whereHas('tags', function($query) use ($tag) { $query->where('slug', $tag->slug); })
+                      ->orderBy('id','DESC')->where('status','PUBLISHED')
+                      ->paginate(5);
+
+        return view('blog.index', compact('posts'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
