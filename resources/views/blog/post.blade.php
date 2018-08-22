@@ -16,12 +16,12 @@
                     @endif
                     <!-- <h5 class="card-title">Special title treatment</h5> -->
                     <p class="card-text">{!! $post->body !!}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                 </div>
                 <div class="card-footer text-muted">
                     Etiquetas:
                     @foreach($post->tags as $tag)
-                        <a href="{{ route('blog.tag', $tag->slug) }}">{{ $tag->name }}</a>,
+                        <a class="badge badge-info" href="{{ route('blog.tag', $tag->slug) }}">{{ $tag->name }}</a>,
                     @endforeach
                 </div>
             </div>

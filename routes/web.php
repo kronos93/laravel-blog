@@ -24,9 +24,9 @@ Route::get('etiquetas/{slug}','BlogController@showByTag')->name('blog.tag');
 // Admin
 
 
-// Route::get('etiquetas','TagController@index')->name('tags.index');
-// Route::get('etiquetas/crear','TagController@create')->name('tags.create');
+Route::get('etiquetas','TagController@index')->name('tags.index');
+Route::get('etiquetas/crear','TagController@create')->name('tags.create');
 
 
-// Route::get('categorias','CategoryController@index')->name('categories.index');
-// Route::get('posts','PostController@index')->name('posts.index');
+Route::get('categorias','CategoryController@index')->name('categories.index');
+Route::get('posts','PostController@index')->name('posts.index');

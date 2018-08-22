@@ -30,7 +30,6 @@ class TagController extends Controller
     public function create()
     {
         //
-        dd('Hols');
         return view('tag.create');
     }
 
@@ -43,6 +42,8 @@ class TagController extends Controller
     public function store(Request $request)
     {
         //
+        $tag = Tag::create($request->all());
+        return redirect()->route('tags.edit', $tag->id)->with('info','Etiqueta creada con éxito');
     }
 
     /**
@@ -54,7 +55,7 @@ class TagController extends Controller
     public function show(Tag $tag)
     {
         //
-
+        return view('tag.show', compact('tag'));
     }
 
     /**
@@ -66,7 +67,7 @@ class TagController extends Controller
     public function edit(Tag $tag)
     {
         //
-
+        return view('tag.edit', compact('tag'));
     }
 
     /**
@@ -79,6 +80,8 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         //
+        $tag->update($request->all());
+        return redirect()->route('tags.edit')->with('info','Etiqueta actualizada con éxito');
     }
 
     /**
